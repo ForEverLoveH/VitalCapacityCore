@@ -1,0 +1,37 @@
+
+
+Date：2023-02-11 11:11:46.941
+LogLevel：Error
+Message： 
+****************************异常文本****************************
+【出现时间】：2023/2/11 11:11:46
+【异常类型】：InvalidAsynchronousStateException
+【异常信息】：调用方法时发生错误。  目标线程不再存在。
+【堆栈调用】：   在 System.Windows.Forms.Control.WaitForWaitHandle(WaitHandle waitHandle)
+   在 System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   在 System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   在 System.Windows.Forms.Control.Invoke(Delegate method)
+   在 PLADCore.GameSystem.GameWindowSys.LoadingWindowSys.SetLoadingWindowClose() 位置 D:\WorkProject\PLADCore\PLADCore\GameSystem\GameWindowSys\LoadingWindowSys.cs:行号 28
+   在 PLADCore.GameSystem.GameWindow.RunningTestingWindow.<UpLoadStuGroupScore>b__30_0() 位置 D:\WorkProject\PLADCore\PLADCore\GameSystem\GameWindow\RunningTestingWindow.cs:行号 544
+【异常方法】：Void WaitForWaitHandle(System.Threading.WaitHandle)
+***************************************************************
+
+--------------------------------------------------
+
+Date：2023-02-11 11:11:52.859
+LogLevel：Error
+Message： 
+****************************异常文本****************************
+【出现时间】：2023/2/11 11:11:52
+【异常类型】：InvalidAsynchronousStateException
+【异常信息】：调用方法时发生错误。  目标线程不再存在。
+【堆栈调用】：   在 System.Windows.Forms.Control.WaitForWaitHandle(WaitHandle waitHandle)
+   在 System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   在 System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   在 System.Windows.Forms.Control.Invoke(Delegate method)
+   在 PLADCore.GameSystem.GameWindowSys.LoadingWindowSys.SetLoadingWindowClose() 位置 D:\WorkProject\PLADCore\PLADCore\GameSystem\GameWindowSys\LoadingWindowSys.cs:行号 28
+   在 PLADCore.GameSystem.GameWindow.RunningTestingWindow.<UpLoadStuGroupScore>b__30_0() 位置 D:\WorkProject\PLADCore\PLADCore\GameSystem\GameWindow\RunningTestingWindow.cs:行号 544
+【异常方法】：Void WaitForWaitHandle(System.Threading.WaitHandle)
+***************************************************************
+
+--------------------------------------------------
