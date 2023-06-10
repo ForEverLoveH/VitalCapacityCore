@@ -539,6 +539,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.uiTitlePanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RunningTestingWindow";
             this.Text = "肺活量测试";
             this.Load += new System.EventHandler(this.RunningTestingWindow_Load);
