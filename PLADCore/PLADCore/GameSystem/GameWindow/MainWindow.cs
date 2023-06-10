@@ -72,7 +72,7 @@ namespace PLADCore.GameSystem.GameWindow
                         break;
                     case "启动测试":
                          //Close();
-                        RunningTestingWindowSys.Instance.ShowRunningWindow();
+                        RunningTestingWindowSys.Instance.ShowRunningWindow(createTime,schoolName);
                         
                         break;
                 }

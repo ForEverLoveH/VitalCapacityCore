@@ -45,7 +45,7 @@ namespace PLADCore.GameSystem
            
         }
 
-        public bool LoadingServerData(string name, ref Dictionary<string, string> localValues ,ListView listView1, UILabel uiLabel5)
+        public bool LoadingServerData(string name, ref Dictionary<string, string> localValues ,ListView listView1, UILabel uiLabel5,ref string paths)
         {
             new Thread((ThreadStart)delegate ()
             {
@@ -119,7 +119,7 @@ namespace PLADCore.GameSystem
 
                 if (bFlag)
                 {
-                    DownlistOutputExcel(upload_Result, listView1,uiLabel5);
+                    DownlistOutputExcel(upload_Result, listView1,uiLabel5,ref paths);
                 }
                 return true;
             }
@@ -134,14 +134,14 @@ namespace PLADCore.GameSystem
                 SetLoadingWindowClose();
             }
         }
-        String importpath = string.Empty;
+       
         /// <summary>
         /// 下载名单
         /// </summary>
         /// <param name="upload_Result"></param>
         /// <param name="listView1"></param>
         /// <param name="msglabel"></param>
-        private void DownlistOutputExcel(GetGroupStudent upload_Result, ListView listView1, UILabel msglabel)
+        private void DownlistOutputExcel(GetGroupStudent upload_Result, ListView listView1, UILabel   msglabel,ref   String importpath)
         {
             List<GroupsItem> Groups = upload_Result.Results.groups;
             List<InputData> doc = new List<InputData>();

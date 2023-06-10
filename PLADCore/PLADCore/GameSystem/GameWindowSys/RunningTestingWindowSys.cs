@@ -27,9 +27,11 @@ namespace PLADCore.GameSystem.GameWindowSys
         {
              Instance= this;    
         }
-        public void ShowRunningWindow()
+        public void ShowRunningWindow(string createTime,string school)
         {
             RunningTestingWindow = new RunningTestingWindow();
+            RunningTestingWindow.CreateTime = createTime;
+            RunningTestingWindow.School = school;
             RunningTestingWindow.Show();
         }
         public SportProjectInfos LoadingSportData()
@@ -151,28 +153,42 @@ namespace PLADCore.GameSystem.GameWindowSys
             listView1.Columns.AddRange(Header1);
         }
 
-        public void UpDataGroup(string groupName, ComboBox uiComboBox)
+        public void UpDataGroup(string creatime,string school, ComboBox uiComboBox)
         {
             try
             {
-                List<string> li = freeSql.Select<DbGroupInfos>().Distinct().ToList(a => a.Name);
-                  uiComboBox.Items.Clear();
-                  AutoCompleteStringCollection lstsourece = new AutoCompleteStringCollection();
-                  foreach (var item in li)
-                  {
-                      uiComboBox.Items.Add(item);
-                      lstsourece.Add(item);
-                  }
-                  uiComboBox.AutoCompleteCustomSource = lstsourece;
-                  if (!string.IsNullOrEmpty(groupName))
-                  {
-                      int index = uiComboBox.Items.IndexOf(groupName);
-                      if (index > 0)
-                      {
-                          uiComboBox.SelectedIndex = index;
-                      }
-                  }
-                  // uiComboBox.SelectedIndex = 0;
+                var ls = freeSql.Select<DbPersonInfos>().Where(a => a.CreateTime ==school && a.SchoolName == creatime)
+                    .ToList();
+                if (ls.Count > 0)
+                {
+                    uiComboBox.Items.Clear();
+                    foreach (var po in ls)
+                    {
+                        if(uiComboBox.Items.Contains(po.GroupName))continue;
+                        else
+                        {
+                            uiComboBox.Items.Add(po.GroupName);
+                        }
+                    }
+                }
+                /* List<string> li = freeSql.Select<DbGroupInfos>().Distinct().ToList(a => a.Name);
+                   uiComboBox.Items.Clear();
+                   AutoCompleteStringCollection lstsourece = new AutoCompleteStringCollection();
+                   foreach (var item in li)
+                   {
+                       uiComboBox.Items.Add(item);
+                       lstsourece.Add(item);
+                   }
+                   uiComboBox.AutoCompleteCustomSource = lstsourece;
+                   if (!string.IsNullOrEmpty(groupName))
+                   {
+                       int index = uiComboBox.Items.IndexOf(groupName);
+                       if (index > 0)
+                       {
+                           uiComboBox.SelectedIndex = index;
+                       }
+                   }*/
+                // uiComboBox.SelectedIndex = 0;
 
             }
             catch (Exception e)

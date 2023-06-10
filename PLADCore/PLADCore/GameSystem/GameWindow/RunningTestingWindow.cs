@@ -27,6 +27,9 @@ namespace PLADCore.GameSystem.GameWindow
            
         private NFC_Help hfNfcHelp = new NFC_Help();
         private SportProjectInfos SportProjectInfos { get; set; }
+        public string CreateTime { get; set; }
+        public string School { get; set; }
+
         private List<UserControl1> _userControl1s = new List<UserControl1>();
         private List<SerialReader> _serialReaders = new List<SerialReader>();
         private List<string> connectPort = new List<string>();
@@ -66,7 +69,7 @@ namespace PLADCore.GameSystem.GameWindow
                 }
                 hfNfcHelp.AddUSBEventWatcher(USBEventHanlder, USBEventHanlder, new TimeSpan(0, 0, 1));
                 RunningTestingWindowSys.Instance.InitListViewHeader(listView1, SportProjectInfos.RoundCount);
-                RunningTestingWindowSys.Instance.UpDataGroup(groupName,comboBox1);
+                RunningTestingWindowSys.Instance.UpDataGroup(School,CreateTime,comboBox1);
                 RunningTestingWindowSys.Instance.SetRunningWindowCheck(checkBox1, checkBox2, checkBox3);
             }
         }

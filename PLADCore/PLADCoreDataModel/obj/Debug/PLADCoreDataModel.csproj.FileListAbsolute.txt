@@ -22,3 +22,15 @@ D:\WorkProject\C#Project\机器测试\肺活量\PLADCore\PLADCoreDataModel\obj\D
 D:\WorkProject\C#Project\机器测试\肺活量\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.csproj.CopyComplete
 D:\WorkProject\C#Project\机器测试\肺活量\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.dll
 D:\WorkProject\C#Project\机器测试\肺活量\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.pdb
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\PLADCoreDataModel.dll
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\PLADCoreDataModel.pdb
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\FreeSql.dll
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\MiniExcel.dll
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\FreeSql.pdb
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\FreeSql.xml
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\bin\Debug\zh-Hans\FreeSql.resources.dll
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.csproj.AssemblyReference.cache
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.csproj.CoreCompileInputs.cache
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.csproj.CopyComplete
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.dll
+D:\WorkProject\C#Project\机器测试\肺活量\VitalCapacityCore\PLADCore\PLADCoreDataModel\obj\Debug\PLADCoreDataModel.pdb

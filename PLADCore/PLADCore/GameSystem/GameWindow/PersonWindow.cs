@@ -51,7 +51,7 @@ namespace PLADCore.GameSystem.GameWindow
                 HZH_Controls.ControlHelper.ThreadInvokerControl(this, () =>
                 {
                     
-                     PersonWindowSys.Instance.LoadingServerData(name, ref localValue, listView1,uiLabel5) ;
+                     PersonWindowSys.Instance.LoadingServerData(name, ref localValue, listView1,uiLabel5,ref paths) ;
                   
                 });
                 
