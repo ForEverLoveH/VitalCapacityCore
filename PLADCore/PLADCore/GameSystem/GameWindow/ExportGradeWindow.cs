@@ -74,6 +74,9 @@ namespace PLADCore.GameSystem.GameWindow
             }
         }
 
-        
+        private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

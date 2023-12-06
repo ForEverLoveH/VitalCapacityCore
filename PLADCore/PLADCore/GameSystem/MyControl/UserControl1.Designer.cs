@@ -22,13 +22,14 @@
 
         #region 组件设计器生成的代码
 
-        /// <summary> 
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uiLabel6 = new Sunny.UI.UILabel();
             this.stateCbx = new System.Windows.Forms.ComboBox();
             this.roundCbx = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -48,6 +49,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.uiLabel6);
             this.panel1.Controls.Add(this.stateCbx);
             this.panel1.Controls.Add(this.roundCbx);
             this.panel1.Controls.Add(this.statusStrip1);
@@ -65,6 +67,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(152, 272);
             this.panel1.TabIndex = 1;
+            // 
+            // uiLabel6
+            // 
+            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel6.Location = new System.Drawing.Point(40, 125);
+            this.uiLabel6.Name = "uiLabel6";
+            this.uiLabel6.Size = new System.Drawing.Size(72, 23);
+            this.uiLabel6.TabIndex = 14;
+            this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // stateCbx
             // 
@@ -84,11 +96,13 @@
             // roundCbx
             // 
             this.roundCbx.FormattingEnabled = true;
+            this.roundCbx.Items.AddRange(new object[] {
+            "第一轮",
+            "第二轮"});
             this.roundCbx.Location = new System.Drawing.Point(72, 173);
             this.roundCbx.Name = "roundCbx";
             this.roundCbx.Size = new System.Drawing.Size(72, 20);
             this.roundCbx.TabIndex = 12;
-           // this.roundCbx.SelectedIndexChanged += new System.EventHandler(this.roundCbx_SelectedIndexChanged);
             // 
             // statusStrip1
             // 
@@ -211,6 +225,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(152, 272);
+            this.Load += new System.EventHandler(this.UserControl1_Load);
+            this.SizeChanged += new System.EventHandler(this.UserControl1_SizeChanged);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -234,5 +250,6 @@
         private Sunny.UI.UILabel mName;
         private System.Windows.Forms.ComboBox stateCbx;
         private System.Windows.Forms.ComboBox roundCbx;
+        private Sunny.UI.UILabel uiLabel6;
     }
 }

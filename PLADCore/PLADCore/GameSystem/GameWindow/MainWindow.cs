@@ -1,7 +1,9 @@
 ﻿using HZH_Controls;
 using HZH_Controls.Forms;
 using PLADCore.GameSystem.GameWindowSys;
+using PLADCore.GameSystem.Helper;
 using Sunny.UI;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,16 +23,20 @@ namespace PLADCore.GameSystem.GameWindow
         {
             InitializeComponent();
         }
+
         private String createTime = string.Empty;
         private string schoolName = string.Empty;
         private string groupName = string.Empty;
-        int proMax = 0;
-        int proVal =0;
+        private int proMax = 0;
+        private int proVal = 0;
+        private AutoSizeControll AutoSizeControll = new AutoSizeControll();
+
         private void MainWindow_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
             string code = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Text = "德育龙体育测试系统" + code;
+            AutoSizeControll.ControlInitializeSize(this);
             MainWindowSys.Instance.UpdataTreeview(treeView1);
         }
 
@@ -42,23 +48,27 @@ namespace PLADCore.GameSystem.GameWindow
                 switch (name)
                 {
                     case "导入名单":
-                      bool  S=  MainWindowSys.Instance.ShowPersonWindow();
+                        bool S = MainWindowSys.Instance.ShowPersonWindow();
                         if (S)
-                        { 
-                              HZH_Controls.ControlHelper.ThreadInvokerControl(this, () =>
-                                    MainWindowSys.Instance.UpdataTreeview(treeView1));
+                        {
+                            HZH_Controls.ControlHelper.ThreadInvokerControl(this, () =>
+                                  MainWindowSys.Instance.UpdataTreeview(treeView1));
                         }
-                        
+
                         break;
+
                     case "数据库初始化":
 
                         break;
+
                     case "系统参数设置":
                         SystemSettingWindowSys.Instance.ShowSystemSettingWindow();
                         break;
+
                     case "平台设置":
                         PlatFormSettingWindowSys.Instance.ShowPlatFormSettingWindow();
                         break;
+
                     case "上传成绩":
                         Thread newThread = new Thread(new ParameterizedThreadStart((o) =>
                         {
@@ -67,19 +77,24 @@ namespace PLADCore.GameSystem.GameWindow
                         newThread.IsBackground = true;
                         newThread.Start();
                         break;
+
                     case "导出成绩":
                         ExportGradeWindowSys.Instance.SetExporWindowData(groupName);
                         break;
+
                     case "启动测试":
-                         //Close();
-                        RunningTestingWindowSys.Instance.ShowRunningWindow(createTime,schoolName);
-                        
+                        if (!String.IsNullOrEmpty(createTime) && !String.IsNullOrEmpty(schoolName))
+                            RunningTestingWindowSys.Instance.ShowRunningWindow(createTime, schoolName);
+                        else
+                        {
+                            UIMessageBox.ShowWarning("请先选择项目信息");
+                            return;
+                        }
                         break;
                 }
-                     
-
             }
         }
+
         /// <summary>
         /// 上传成绩
         /// </summary>
@@ -94,7 +109,6 @@ namespace PLADCore.GameSystem.GameWindow
                 if (fsp.Length > 0)
                 {
                     projectName = fsp[0];
-
                 }
                 if (string.IsNullOrEmpty(projectName))
                 {
@@ -119,7 +133,6 @@ namespace PLADCore.GameSystem.GameWindow
                         MainWindowSys.Instance.UpdataGroupDataView(createTime, schoolName, groupName, listView1);
                     });
                 }
-
             }
             else
             {
@@ -127,8 +140,12 @@ namespace PLADCore.GameSystem.GameWindow
                 return;
             }
         }
-    
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
@@ -143,7 +160,6 @@ namespace PLADCore.GameSystem.GameWindow
             {
                 createTime = paths[0];
                 schoolName = paths[1];
-
             }
             else if (e.Node.Level == 2)
             {
@@ -152,7 +168,6 @@ namespace PLADCore.GameSystem.GameWindow
                 groupName = paths[2];
             }
             MainWindowSys.Instance.UpdataGroupDataView(createTime, schoolName, groupName, listView1);
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -166,6 +181,11 @@ namespace PLADCore.GameSystem.GameWindow
             {
                 ucProcessLine1.Value = upV;
             });
+        }
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            AutoSizeControll.ControlAutoSize(this);
         }
     }
 }

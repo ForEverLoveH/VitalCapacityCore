@@ -18,33 +18,37 @@ using Sunny.UI.Win32;
 
 namespace PLADCore.GameSystem.GameWindowSys
 {
-    public  class RunningTestingWindowSys
+    public class RunningTestingWindowSys
     {
         public static RunningTestingWindowSys Instance;
-        IFreeSql freeSql = DB.Sqlite;
-        RunningTestingWindow RunningTestingWindow = null;
+        private IFreeSql freeSql = DB.Sqlite;
+        private RunningTestingWindow RunningTestingWindow = null;
+
         public void Awake()
         {
-             Instance= this;    
+            Instance = this;
         }
-        public void ShowRunningWindow(string createTime,string school)
+
+        public void ShowRunningWindow(string createTime, string school)
         {
             RunningTestingWindow = new RunningTestingWindow();
             RunningTestingWindow.CreateTime = createTime;
             RunningTestingWindow.School = school;
             RunningTestingWindow.Show();
         }
+
         public SportProjectInfos LoadingSportData()
         {
             return freeSql.Select<SportProjectInfos>().ToOne();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userControl1"></param>
         /// <param name="_serialReaders"></param>
         /// <param name="connprot"></param>
-        public void CloseAllSerial(List<UserControl1> userControl1,List<SerialReader> _serialReaders,List<string> connprot)
+        public void CloseAllSerial(List<UserControl1> userControl1, List<SerialReader> _serialReaders, List<string> connprot)
         {
             foreach (var items in _serialReaders)
             {
@@ -58,47 +62,50 @@ namespace PLADCore.GameSystem.GameWindowSys
             foreach (var item in userControl1)
             {
                 item.p_toolState = "设备未连接   ";
-                item.p_toolState_color =Color.Red;
-                item.p_title_Color =System.Drawing.SystemColors.ControlLight;
+                item.p_toolState_color = Color.Red;
+                item.p_title_Color = System.Drawing.SystemColors.ControlLight;
             }
             GC.Collect();
-           
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
-        public  bool ShowRunMachineWindow()
+        public bool ShowRunMachineWindow()
         {
             return RunningMachineSettingWindowSys.Instance.ShowRunningMachineSettingWindow();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public int GetMachineCount()
         {
             return RunningMachineSettingWindowSys.Instance.GetMachineCount();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public string GetPortName()
         {
             return RunningMachineSettingWindowSys.Instance.GetPortName();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public List<LocalInfos> GetLocalInfo()
         {
             return freeSql.Select<LocalInfos>().ToList();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="listView1"></param>
         /// <param name="roundCount"></param>
@@ -153,54 +160,37 @@ namespace PLADCore.GameSystem.GameWindowSys
             listView1.Columns.AddRange(Header1);
         }
 
-        public void UpDataGroup(string creatime,string school, ComboBox uiComboBox)
+        public void UpDataGroup(string creatime, string school, ComboBox uiComboBox)
         {
             try
             {
-                var ls = freeSql.Select<DbPersonInfos>().Where(a => a.CreateTime ==school && a.SchoolName == creatime)
+                var ls = freeSql.Select<DbPersonInfos>().Where(a => a.CreateTime == school && a.SchoolName == creatime)
                     .ToList();
                 if (ls.Count > 0)
                 {
                     uiComboBox.Items.Clear();
                     foreach (var po in ls)
                     {
-                        if(uiComboBox.Items.Contains(po.GroupName))continue;
+                        if (uiComboBox.Items.Contains(po.GroupName)) continue;
                         else
                         {
                             uiComboBox.Items.Add(po.GroupName);
                         }
                     }
                 }
-                /* List<string> li = freeSql.Select<DbGroupInfos>().Distinct().ToList(a => a.Name);
-                   uiComboBox.Items.Clear();
-                   AutoCompleteStringCollection lstsourece = new AutoCompleteStringCollection();
-                   foreach (var item in li)
-                   {
-                       uiComboBox.Items.Add(item);
-                       lstsourece.Add(item);
-                   }
-                   uiComboBox.AutoCompleteCustomSource = lstsourece;
-                   if (!string.IsNullOrEmpty(groupName))
-                   {
-                       int index = uiComboBox.Items.IndexOf(groupName);
-                       if (index > 0)
-                       {
-                           uiComboBox.SelectedIndex = index;
-                       }
-                   }*/
-                // uiComboBox.SelectedIndex = 0;
-
             }
             catch (Exception e)
             {
-                 LoggerHelper.Debug(e);
-                 uiComboBox.Items.Clear();
-                 uiComboBox.AutoCompleteCustomSource = null;
+                LoggerHelper.Debug(e);
+                uiComboBox.Items.Clear();
+                uiComboBox.AutoCompleteCustomSource = null;
             }
         }
+
         private string AutoMatchLog = Application.StartupPath + "\\Data\\AutoMatchLog.log";
         private string AutoUploadLog = Application.StartupPath + "\\Data\\AutoUploadLog.log";
         private string AutoPrintLog = Application.StartupPath + "\\Data\\AutoPrintLog.log";
+
         public void SetRunningWindowCheck(CheckBox checkBox1, CheckBox checkBox2, CheckBox checkBox3)
         {
             try
@@ -248,105 +238,106 @@ namespace PLADCore.GameSystem.GameWindowSys
                 LoggerHelper.Debug(ex);
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="listView1"></param>
         /// <param name="groupsCbx"></param>
         /// <param name="sportProjectInfos"></param>
         /// <returns></returns>
-        public List<DbPersonInfos> UpDataListView(ListView listView1, ComboBox groupsCbx,SportProjectInfos sportProjectInfos)
+        public List<DbPersonInfos> UpDataListView(ListView listView1, ComboBox groupsCbx, SportProjectInfos sportProjectInfos)
         {
-              List<DbPersonInfos> dbPersonInfos = new List<DbPersonInfos>();
-              try
-              {
-                  listView1.Items.Clear();
-                  int index = groupsCbx.SelectedIndex;
-                  string groupName = groupsCbx.Text;
-                  dbPersonInfos =freeSql.Select<DbPersonInfos>().Where(a => a.GroupName == groupName).ToList();
-                  if (dbPersonInfos.Count == 0) return dbPersonInfos ;
-                  int step = 1;
-                  listView1.BeginUpdate();
-                  Font f = new Font(Control.DefaultFont, FontStyle.Bold);
-                  bool isBestScore = sportProjectInfos.BestScoreMode == 0 ? true : false; 
-                  foreach (var dbPersonInfo in dbPersonInfos)
-                  {
-                      ListViewItem li = new ListViewItem();
-                      li.UseItemStyleForSubItems = false;
-                      li.Text = step.ToString();
-                      li.SubItems.Add(dbPersonInfo.SchoolName);
-                      li.SubItems.Add(dbPersonInfo.GroupName);
-                      li.SubItems.Add(dbPersonInfo.IdNumber);
-                      li.SubItems.Add(dbPersonInfo.Name);
-                      li.SubItems.Add("未测试");
-                      List<ResultInfos> resultInfos = freeSql.Select<ResultInfos>()
-                          .Where(a => a.PersonId == dbPersonInfo.Id.ToString() && a.IsRemoved == 0)
-                          .OrderBy(a => a.Id)
-                          .ToList();
-                      int resultRound = 0;
-                      double MaxScore = 99999;
-                      if (isBestScore) MaxScore = 0;
-                      bool getScore = false;
-                      foreach (var resultInfo in resultInfos)
-                      {
-                          if (resultInfo.State != 1)
-                          {
-                              string s_rstate = ResultStateType.Match(resultInfo.State);
-                              li.SubItems.Add(s_rstate);
-                              li.SubItems[li.SubItems.Count - 1].ForeColor = Color.Red;
-                          }
-                          else
-                          {
-                              getScore = true;
-                              li.SubItems.Add(resultInfo.Result.ToString());
-                              li.SubItems[li.SubItems.Count - 1].BackColor = Color.MediumSpringGreen;
-                              if (isBestScore)
-                              {
-                                  //取最大值
-                                  if (MaxScore < resultInfo.Result) MaxScore = resultInfo.Result;
-                              }
-                              else
-                              {
-                                  //取最小值
-                                  if (MaxScore > resultInfo.Result) MaxScore = resultInfo.Result;
-                              }
-                          }
-                          li.SubItems[li.SubItems.Count - 1].Font = f;
-                          if (resultInfo.uploadState == 0)
-                          {
-                              li.SubItems.Add("未上传");
-                              li.SubItems[li.SubItems.Count - 1].ForeColor = Color.Red;
-                          }
-                          else if (resultInfo.uploadState == 1)
-                          {
-                              li.SubItems.Add("已上传");
-                              li.SubItems[li.SubItems.Count - 1].ForeColor = Color.MediumSpringGreen;
-                              li.SubItems[li.SubItems.Count - 1].Font = f;
-                          }
-                          resultRound++;
-                      }
-                      for (int i = resultRound; i < sportProjectInfos.RoundCount; i++)
-                      {
-                          li.SubItems.Add("未测试");
-                          li.SubItems.Add("未上传");
-                      }
-                      if (getScore)
-                      { li.SubItems[5].Text = MaxScore.ToString(); }
-                      step++;
-                      listView1.Items.Insert(listView1.Items.Count, li);
-                  }
-                  listView1.EndUpdate();
-              }
-              catch (Exception ex)
-              {
-                  listView1.Items.Clear();
-                  dbPersonInfos.Clear();
-                  LoggerHelper.Debug(ex);
-              }
-              return dbPersonInfos;
+            List<DbPersonInfos> dbPersonInfos = new List<DbPersonInfos>();
+            try
+            {
+                listView1.Items.Clear();
+                int index = groupsCbx.SelectedIndex;
+                string groupName = groupsCbx.Text;
+                dbPersonInfos = freeSql.Select<DbPersonInfos>().Where(a => a.GroupName == groupName).ToList();
+                if (dbPersonInfos.Count == 0) return dbPersonInfos;
+                int step = 1;
+                listView1.BeginUpdate();
+                Font f = new Font(Control.DefaultFont, FontStyle.Bold);
+                bool isBestScore = sportProjectInfos.BestScoreMode == 0 ? true : false;
+                foreach (var dbPersonInfo in dbPersonInfos)
+                {
+                    ListViewItem li = new ListViewItem();
+                    li.UseItemStyleForSubItems = false;
+                    li.Text = step.ToString();
+                    li.SubItems.Add(dbPersonInfo.SchoolName);
+                    li.SubItems.Add(dbPersonInfo.GroupName);
+                    li.SubItems.Add(dbPersonInfo.IdNumber);
+                    li.SubItems.Add(dbPersonInfo.Name);
+                    li.SubItems.Add("未测试");
+                    List<ResultInfos> resultInfos = freeSql.Select<ResultInfos>()
+                        .Where(a => a.PersonId == dbPersonInfo.Id.ToString() && a.IsRemoved == 0)
+                        .OrderBy(a => a.Id)
+                        .ToList();
+                    int resultRound = 0;
+                    double MaxScore = 99999;
+                    if (isBestScore) MaxScore = 0;
+                    bool getScore = false;
+                    foreach (var resultInfo in resultInfos)
+                    {
+                        if (resultInfo.State != 1)
+                        {
+                            string s_rstate = ResultStateType.Match(resultInfo.State);
+                            li.SubItems.Add(s_rstate);
+                            li.SubItems[li.SubItems.Count - 1].ForeColor = Color.Red;
+                        }
+                        else
+                        {
+                            getScore = true;
+                            li.SubItems.Add(resultInfo.Result.ToString());
+                            li.SubItems[li.SubItems.Count - 1].BackColor = Color.MediumSpringGreen;
+                            if (isBestScore)
+                            {
+                                //取最大值
+                                if (MaxScore < resultInfo.Result) MaxScore = resultInfo.Result;
+                            }
+                            else
+                            {
+                                //取最小值
+                                if (MaxScore > resultInfo.Result) MaxScore = resultInfo.Result;
+                            }
+                        }
+                        li.SubItems[li.SubItems.Count - 1].Font = f;
+                        if (resultInfo.uploadState == 0)
+                        {
+                            li.SubItems.Add("未上传");
+                            li.SubItems[li.SubItems.Count - 1].ForeColor = Color.Red;
+                        }
+                        else if (resultInfo.uploadState == 1)
+                        {
+                            li.SubItems.Add("已上传");
+                            li.SubItems[li.SubItems.Count - 1].ForeColor = Color.MediumSpringGreen;
+                            li.SubItems[li.SubItems.Count - 1].Font = f;
+                        }
+                        resultRound++;
+                    }
+                    for (int i = resultRound; i < sportProjectInfos.RoundCount; i++)
+                    {
+                        li.SubItems.Add("未测试");
+                        li.SubItems.Add("未上传");
+                    }
+                    if (getScore)
+                    { li.SubItems[5].Text = MaxScore.ToString(); }
+                    step++;
+                    listView1.Items.Insert(listView1.Items.Count, li);
+                }
+                listView1.EndUpdate();
+            }
+            catch (Exception ex)
+            {
+                listView1.Items.Clear();
+                dbPersonInfos.Clear();
+                LoggerHelper.Debug(ex);
+            }
+            return dbPersonInfos;
         }
 
-        public void RefreshGrroupData(ComboBox  groupsCbx,string selectGroupName=" ")
+        public void RefreshGrroupData(ComboBox groupsCbx, string selectGroupName = " ")
         {
             try
             {
@@ -376,8 +367,6 @@ namespace PLADCore.GameSystem.GameWindowSys
             }
         }
 
-        
-        
         /// <summary>
         /// 清除已配对
         /// </summary>
@@ -395,19 +384,19 @@ namespace PLADCore.GameSystem.GameWindowSys
             }
         }
 
-
         public List<ResultInfos> GetResultInfos(DbPersonInfos dpi, int nowRound)
         {
-          return  freeSql.Select<ResultInfos>().Where(a => a.PersonId == dpi.Id.ToString() && a.IsRemoved == 0 && a.RoundId == nowRound + 1).OrderBy(a => a.Id).ToList();
+            return freeSql.Select<ResultInfos>().Where(a => a.PersonId == dpi.Id.ToString() && a.IsRemoved == 0 && a.RoundId == nowRound + 1).OrderBy(a => a.Id).ToList();
         }
 
         public List<ResultInfos> GetResultInfos(string id)
         {
-            return  freeSql.Select<ResultInfos>()
+            return freeSql.Select<ResultInfos>()
                 .Where(a => a.PersonIdNumber == id && a.IsRemoved == 0).OrderBy(a => a.Id).ToList();
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
@@ -415,6 +404,7 @@ namespace PLADCore.GameSystem.GameWindowSys
         {
             return freeSql.Select<DbPersonInfos>().Where(a => a.GroupName == text).ToList();
         }
+
         /// <summary>
         /// 保存成绩
         /// </summary>
@@ -422,7 +412,7 @@ namespace PLADCore.GameSystem.GameWindowSys
         /// <param name="groupsCbx"></param>
         /// <param name="sportProjectInfos"></param>
         public void WriteScoreIntoDb(List<UserControl1> userControl1s, ComboBox groupsCbx,
-            SportProjectInfos sportProjectInfos,ListView listView1)
+            SportProjectInfos sportProjectInfos, ListView listView1)
         {
             try
             {
@@ -451,7 +441,7 @@ namespace PLADCore.GameSystem.GameWindowSys
                         List<ResultInfos> resultInfos = freeSql.Select<ResultInfos>()
                             .Where(a => a.PersonIdNumber == idNumber
                                         && a.IsRemoved == 0
-                                        && a.RoundId == i+1)
+                                        && a.RoundId == i + 1)
                             .OrderBy(a => a.Id)
                             .ToList();
                         if (resultInfos.Count == 0)
@@ -485,9 +475,8 @@ namespace PLADCore.GameSystem.GameWindowSys
                     .IfExistsDoNothing()
                     .ExecuteAffrows();
                 if (errorsb.Length != 0) MessageBox.Show(errorsb.ToString());
-                if (result > 0) UpDataListView(listView1,groupsCbx,sportProjectInfos);
+                if (result > 0) UpDataListView(listView1, groupsCbx, sportProjectInfos);
             }
-
             catch (Exception exception)
             {
                 LoggerHelper.Debug(exception);
@@ -495,10 +484,10 @@ namespace PLADCore.GameSystem.GameWindowSys
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
-        public bool  UpLoadStuGroupScore(object obj)
+        public bool UpLoadStuGroupScore(object obj)
         {
             try
             {
@@ -615,16 +604,18 @@ namespace PLADCore.GameSystem.GameWindowSys
                         List<LogInfos> logInfos = freeSql.Select<LogInfos>()
                                 .Where(a => a.IdNumber == stu.IdNumber && a.State != -404)
                                 .ToList();
-                        logInfos.ForEach(item =>{
-                                string sbtxt = $"时间：{item.CreateTime},考号:{item.IdNumber},{item.Remark};";
-                                logSb.Append(sbtxt);
+                        logInfos.ForEach(item =>
+                        {
+                            string sbtxt = $"时间：{item.CreateTime},考号:{item.IdNumber},{item.Remark};";
+                            logSb.Append(sbtxt);
                         });
                         rdi.Memo = logSb.ToString();
                         rdi.Ip = cpuid;
                         ///可以处理成绩
                         rdi.Result = MaxScore;
-                         
+
                         #region 查询文件
+
                         //成绩根目录
                         Dictionary<string, string> dic_images = new Dictionary<string, string>();
                         Dictionary<string, string> dic_viedos = new Dictionary<string, string>();
@@ -678,7 +669,9 @@ namespace PLADCore.GameSystem.GameWindowSys
                                 }
                             }
                         }
+
                         #endregion 查询文件
+
                         rdi.GroupNo = GroupNo;
                         rdi.Text = dic_texts;
                         rdi.Images = dic_images;
@@ -739,12 +732,12 @@ namespace PLADCore.GameSystem.GameWindowSys
                         }
                     }
                     //写入失败log
-                    WriteLogWithFauilt(errorList,gInfo);
+                    WriteLogWithFauilt(errorList, gInfo);
                 }
-                 //写入成功写入日志
-                 WriteLogWriteSucess(successList);
-                 LoggerHelper.Monitor(logWirte.ToString());
-                 string outpitMessage = messageSb.ToString();
+                //写入成功写入日志
+                WriteLogWriteSucess(successList);
+                LoggerHelper.Monitor(logWirte.ToString());
+                string outpitMessage = messageSb.ToString();
                 return true;
             }
             catch (Exception exception)
@@ -782,10 +775,11 @@ namespace PLADCore.GameSystem.GameWindowSys
                 successList.Clear();
             }
         }
+
         /// <summary>
         /// 写入失败log
         ///
-        /// 
+        ///
         /// </summary>
         /// <param name="errorList"></param>
         /// <param name="gInfo"></param>
@@ -812,13 +806,14 @@ namespace PLADCore.GameSystem.GameWindowSys
                 errorList.Clear();
             }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="groupName"></param>
         /// <param name="sportProjectInfos"></param>
         /// <exception cref="Exception"></exception>
-        public void PrintScore(string groupName,SportProjectInfos sportProjectInfos)
+        public void PrintScore(string groupName, SportProjectInfos sportProjectInfos)
         {
             try
             {
@@ -916,14 +911,14 @@ namespace PLADCore.GameSystem.GameWindowSys
                 LoggerHelper.Debug(exception);
             }
         }
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="listView1"></param>
         /// <param name="strState"></param>
-        
-        public void SetErrorState(ListView listView1, int _nowRound, string  stateStr ,ComboBox comboBox,SportProjectInfos sportProjectInfos)
+
+        public void SetErrorState(ListView listView1, int _nowRound, string stateStr, ComboBox comboBox, SportProjectInfos sportProjectInfos)
         {
             try
             {
@@ -968,9 +963,8 @@ namespace PLADCore.GameSystem.GameWindowSys
 
         public void CheckChange1(CheckBox checkBox)
         {
-          
             int value = checkBox.Checked ? 1 : 0;
-            File.WriteAllText(AutoMatchLog,value.ToString());
+            File.WriteAllText(AutoMatchLog, value.ToString());
         }
 
         public void CheckChange2(CheckBox checkBox)
@@ -985,7 +979,6 @@ namespace PLADCore.GameSystem.GameWindowSys
             //自动打印
             int value = checkBox.Checked ? 1 : 0;
             File.WriteAllText(AutoPrintLog, value.ToString());
-        }   
+        }
     }
-    
 }

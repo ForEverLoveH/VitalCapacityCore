@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PLADCore.GameSystem.Helper;
 using PLADCore.GameSystem.MyControl;
 using Sunny.UI;
 
@@ -23,6 +24,8 @@ namespace PLADCore.GameSystem.GameWindow
         public RunningTestingWindow()
         {
             InitializeComponent();
+            AutoWindowSys = new AutoWindowSys(this.Width, this.Height);
+            AutoWindowSys.SetTag(this);
         }
            
         private NFC_Help hfNfcHelp = new NFC_Help();
@@ -40,9 +43,12 @@ namespace PLADCore.GameSystem.GameWindow
         private int _nowRound = 0;//点前轮次
         private bool IsReset = false;// 是否存在重置的学生
         private List<string> ResetStudentExamIDData = new List<string>();//被重置的学生考号信息
+        private AutoWindowSys AutoWindowSys = null;
+       
         private void RunningTestingWindow_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
+            //AutoSizeControll.ControlInitializeSize(this);
             toolStripStatusLabel1.Text = "程序集版本:" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SportProjectInfos = RunningTestingWindowSys.Instance.LoadingSportData();
             RunningTestingWindowSys.Instance.CloseAllSerial(_userControl1s, _serialReaders, connectPort);
@@ -883,6 +889,16 @@ namespace PLADCore.GameSystem.GameWindow
         #endregion
 
 
-        
+        private void RunningTestingWindow_SizeChanged(object sender, EventArgs e)
+        {
+              
+        }
+
+        private void RunningTestingWindow_Resize(object sender, EventArgs e)
+        {
+            AutoWindowSys.ReWinformLayout(this);
+        }
+
+       
     }
 }

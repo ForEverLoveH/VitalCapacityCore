@@ -124,7 +124,7 @@
             this.uiCheckBox1.TabIndex = 0;
             this.uiCheckBox1.Text = "仅导出已测试";
             this.uiCheckBox1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            //this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
+            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
             // ExportGradeWindow
             // 

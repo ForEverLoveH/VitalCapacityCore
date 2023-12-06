@@ -99,59 +99,59 @@ namespace PLADCore.GameSystem.GameWindowSys
         /// <param name="localValues"></param>
         public void GetExamNum(UIComboBox uiComboBox3, string url, Dictionary<string, string> localValues)
         {
-            try 
+            uiComboBox3.Items.Clear();
+           
+
+            if (string.IsNullOrEmpty(url))
             {
-                url += RequestUrl.GetExamListUrl;
-                RequestParameter RequestParameter = new RequestParameter();
-                RequestParameter.AdminUserName = localValues["AdminUserName"];
-                RequestParameter.TestManUserName = localValues["TestManUserName"];
-                RequestParameter.TestManPassword = localValues["TestManPassword"];
-                //序列化
-                string JsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(RequestParameter);
-                var formDatas = new List<FormItemModel>();
-                //添加其他字段
-                formDatas.Add(new FormItemModel()
-                {
-                    Key = "data",
-                    Value = JsonStr
-                });
-                var httpUpload = new HttpUpload();
-                string result = String.Empty;
+                UIMessageBox.ShowWarning("网址为空!");
+                return;
+            }
+            url += RequestUrl.GetExamListUrl;
+            RequestParameter RequestParameter = new RequestParameter();
+            RequestParameter.AdminUserName = localValues["AdminUserName"];
+            RequestParameter.TestManUserName = localValues["TestManUserName"];
+            RequestParameter.TestManPassword = localValues["TestManPassword"];
+
+            //序列化
+            string JsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(RequestParameter);
+
+            // string url = localValues["Platform"] + RequestUrl.GetExamListUrl;
+
+            var formDatas = new List<FormItemModel>();
+            //添加其他字段
+            formDatas.Add(new FormItemModel()
+            {
+                Key = "data",
+                Value = JsonStr
+            });
+            var httpUpload = new HttpUpload();
+            string result = HttpUpload.PostForm(url, formDatas);
+            GetExamList upload_Result = JsonConvert.DeserializeObject<GetExamList>(result);
+
+            if (upload_Result == null || upload_Result.Results == null || upload_Result.Results.Count == 0)
+            {
+                string error = string.Empty;
                 try
                 {
-                    result = HttpUpload.PostForm(url, formDatas);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("请检查网络");
-                }
-                GetExamList upload_Result = JsonConvert.DeserializeObject<GetExamList>(result);
+                    error = upload_Result.Error;
 
-                if (upload_Result == null || upload_Result.Results == null || upload_Result.Results.Count == 0)
-                {
-                    string error = string.Empty;
-                    try
-                    {
-                        error = upload_Result.Error;
-                    }
-                    catch (Exception)
-                    {
-                        error = string.Empty;
-                    }
-                    UIMessageBox.ShowError($"提交错误,错误码:[{error}]");
-                    return;
                 }
-                foreach (var item in upload_Result.Results)
+                catch (Exception)
                 {
-                    string str = $"{item.title}_{item.exam_id}";
-                    uiComboBox3.Items.Add(str);
+
+                    error = string.Empty;
                 }
+               UIMessageBox.ShowWarning($"提交错误,错误码:[{error}]");
+                return;
             }
-            catch (Exception ex)
+
+            foreach (var item in upload_Result.Results)
             {
-                LoggerHelper.Debug(ex);
-                UIMessageBox.Show(ex.Message);
+                string str = $"{item.title}_{item.exam_id}";
+                uiComboBox3.Items.Add(str);
             }
+
         }
 
         /// <summary>
@@ -163,69 +163,66 @@ namespace PLADCore.GameSystem.GameWindowSys
         /// <param name="localValues"></param>
         public void GetCode(string examId, UIComboBox uiComboBox2, UIComboBox uiComboBox1, Dictionary<string, string> localValues)
         {
-            try 
-            { 
-                if (examId.IndexOf('_') != -1)
-                {
-                    examId = examId.Substring(examId.IndexOf('_') + 1);
-                }
-                string url = uiComboBox2.Text;
-                if (string.IsNullOrEmpty(url))
-                {
-                        UIMessageBox.ShowError(  "网址为空!");
-                    return;
-                }
-                url += RequestUrl.GetMachineCodeListUrl;
-                RequestParameter RequestParameter = new RequestParameter();
-                RequestParameter.AdminUserName = localValues["AdminUserName"];
-                RequestParameter.TestManUserName = localValues["TestManUserName"];
-                RequestParameter.TestManPassword = localValues["TestManPassword"];
-                RequestParameter.ExamId = examId;
-                //序列化
-                string JsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(RequestParameter);
-                var formDatas = new List<FormItemModel>();
-                //添加其他字段
-                formDatas.Add(new FormItemModel()
-                {
-                    Key = "data",
-                    Value = JsonStr
-                });
-                var httpUpload = new HttpUpload();
-                string result = String.Empty;
+           uiComboBox1.Items.Clear();
+
+           
+            if (string.IsNullOrEmpty(examId))
+            {
+                UIMessageBox.ShowWarning("考试id为空!");
+                return;
+            }
+            if (examId.IndexOf('_') != -1)
+            {
+                examId = examId.Substring(examId.IndexOf('_') + 1);
+            }
+            string url = uiComboBox2.Text;
+            if (string.IsNullOrEmpty(url))
+            {
+                UIMessageBox.ShowWarning("网址为空!");
+                return;
+            }
+            url += RequestUrl.GetMachineCodeListUrl;
+
+            RequestParameter RequestParameter = new RequestParameter();
+            RequestParameter.AdminUserName = localValues["AdminUserName"];
+            RequestParameter.TestManUserName = localValues["TestManUserName"];
+            RequestParameter.TestManPassword = localValues["TestManPassword"];
+            RequestParameter.ExamId = examId;
+            //序列化
+            string JsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(RequestParameter);
+
+            var formDatas = new List<FormItemModel>();
+            //添加其他字段
+            formDatas.Add(new FormItemModel()
+            {
+                Key = "data",
+                Value = JsonStr
+            });
+            var httpUpload = new HttpUpload();
+            string result = HttpUpload.PostForm(url, formDatas);
+            GetMachineCodeList upload_Result = JsonConvert.DeserializeObject<GetMachineCodeList>(result);
+            if (upload_Result == null || upload_Result.Results == null || upload_Result.Results.Count == 0)
+            {
+                string error = string.Empty;
                 try
                 {
-                    result = HttpUpload.PostForm(url, formDatas);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("请检查网络");
-                }
-                GetMachineCodeList upload_Result = JsonConvert.DeserializeObject<GetMachineCodeList>(result);
-                if (upload_Result == null || upload_Result.Results == null || upload_Result.Results.Count == 0)
-                {
-                    string error = string.Empty;
-                    try
-                    {
-                        error = upload_Result.Error;
-                    }
-                    catch (Exception)
-                    {
-                        error = string.Empty;
-                    }
-                    UIMessageBox.ShowError( $"提交错误,错误码:[{error}]");
-                    return;
-                }
+                    error = upload_Result.Error;
 
-                foreach (var item in upload_Result.Results)
-                {
-                    string str = $"{item.title}_{item.MachineCode}";
-                    uiComboBox1.Items.Add(str);
                 }
+                catch (Exception)
+                {
+
+                    error = string.Empty;
+                }
+                UIMessageBox.ShowWarning($"提交错误,错误码:[{error}]");
+                return;
             }
-            catch (Exception ex)
+
+            foreach (var item in upload_Result.Results)
             {
-                LoggerHelper.Debug(ex);
-                UIMessageBox.Show(ex.Message);
+                string str = $"{item.title}_{item.MachineCode}";
+                uiComboBox1.Items.Add(str);
+
             }
         }
         /// <summary>

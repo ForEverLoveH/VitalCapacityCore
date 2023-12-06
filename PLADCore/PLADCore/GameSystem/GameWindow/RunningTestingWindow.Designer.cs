@@ -162,7 +162,7 @@
             this.listView1.Location = new System.Drawing.Point(4, 104);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1531, 418);
+            this.listView1.Size = new System.Drawing.Size(1531, 294);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -220,7 +220,7 @@
             // 
             this.uiButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton2.Location = new System.Drawing.Point(123, 45);
+            this.uiButton2.Location = new System.Drawing.Point(109, 45);
             this.uiButton2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton2.Name = "uiButton2";
             this.uiButton2.Size = new System.Drawing.Size(100, 35);
@@ -233,9 +233,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(421, 51);
+            this.comboBox1.Location = new System.Drawing.Point(377, 49);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 29);
+            this.comboBox1.Size = new System.Drawing.Size(103, 29);
             this.comboBox1.TabIndex = 15;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -243,7 +243,7 @@
             // 
             this.uiButton11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton11.Location = new System.Drawing.Point(1255, 51);
+            this.uiButton11.Location = new System.Drawing.Point(1149, 49);
             this.uiButton11.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton11.Name = "uiButton11";
             this.uiButton11.Size = new System.Drawing.Size(90, 35);
@@ -257,7 +257,7 @@
             // 
             this.uiButton10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton10.Location = new System.Drawing.Point(1440, 51);
+            this.uiButton10.Location = new System.Drawing.Point(1341, 51);
             this.uiButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton10.Name = "uiButton10";
             this.uiButton10.Size = new System.Drawing.Size(91, 35);
@@ -271,7 +271,7 @@
             // 
             this.uiButton9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton9.Location = new System.Drawing.Point(1351, 51);
+            this.uiButton9.Location = new System.Drawing.Point(1245, 49);
             this.uiButton9.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton9.Name = "uiButton9";
             this.uiButton9.Size = new System.Drawing.Size(83, 35);
@@ -285,7 +285,7 @@
             // 
             this.uiButton8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton8.Location = new System.Drawing.Point(1153, 51);
+            this.uiButton8.Location = new System.Drawing.Point(1047, 49);
             this.uiButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton8.Name = "uiButton8";
             this.uiButton8.Size = new System.Drawing.Size(96, 35);
@@ -299,7 +299,7 @@
             // 
             this.uiButton7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton7.Location = new System.Drawing.Point(1063, 51);
+            this.uiButton7.Location = new System.Drawing.Point(957, 49);
             this.uiButton7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton7.Name = "uiButton7";
             this.uiButton7.Size = new System.Drawing.Size(84, 35);
@@ -313,7 +313,7 @@
             // 
             this.uiButton6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton6.Location = new System.Drawing.Point(960, 51);
+            this.uiButton6.Location = new System.Drawing.Point(854, 49);
             this.uiButton6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton6.Name = "uiButton6";
             this.uiButton6.Size = new System.Drawing.Size(97, 35);
@@ -327,7 +327,7 @@
             // 
             this.uiButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton5.Location = new System.Drawing.Point(865, 51);
+            this.uiButton5.Location = new System.Drawing.Point(759, 49);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
             this.uiButton5.Size = new System.Drawing.Size(89, 35);
@@ -343,12 +343,12 @@
             this.uiComboBox2.FillColor = System.Drawing.Color.White;
             this.uiComboBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiComboBox2.Items.AddRange(new object[] { "   " });
-            this.uiComboBox2.Location = new System.Drawing.Point(732, 51);
+            this.uiComboBox2.Location = new System.Drawing.Point(660, 51);
             this.uiComboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiComboBox2.MinimumSize = new System.Drawing.Size(63, 0);
             this.uiComboBox2.Name = "uiComboBox2";
             this.uiComboBox2.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.uiComboBox2.Size = new System.Drawing.Size(110, 29);
+            this.uiComboBox2.Size = new System.Drawing.Size(92, 29);
             this.uiComboBox2.TabIndex = 7;
             this.uiComboBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiComboBox2.Watermark = "";
@@ -358,9 +358,9 @@
             // uiLabel2
             // 
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel2.Location = new System.Drawing.Point(665, 46);
+            this.uiLabel2.Location = new System.Drawing.Point(579, 45);
             this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(72, 35);
+            this.uiLabel2.Size = new System.Drawing.Size(83, 35);
             this.uiLabel2.TabIndex = 6;
             this.uiLabel2.Text = "轮次：";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -370,7 +370,7 @@
             // 
             this.uiButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton4.Location = new System.Drawing.Point(559, 45);
+            this.uiButton4.Location = new System.Drawing.Point(486, 45);
             this.uiButton4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton4.Name = "uiButton4";
             this.uiButton4.Size = new System.Drawing.Size(100, 35);
@@ -383,7 +383,7 @@
             // uiLabel1
             // 
             this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel1.Location = new System.Drawing.Point(356, 46);
+            this.uiLabel1.Location = new System.Drawing.Point(321, 45);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(67, 35);
             this.uiLabel1.TabIndex = 3;
@@ -395,7 +395,7 @@
             // 
             this.uiButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton3.Location = new System.Drawing.Point(250, 46);
+            this.uiButton3.Location = new System.Drawing.Point(215, 45);
             this.uiButton3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton3.Name = "uiButton3";
             this.uiButton3.Size = new System.Drawing.Size(100, 35);
@@ -409,7 +409,7 @@
             // 
             this.uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton1.Location = new System.Drawing.Point(17, 46);
+            this.uiButton1.Location = new System.Drawing.Point(3, 47);
             this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton1.Name = "uiButton1";
             this.uiButton1.Size = new System.Drawing.Size(100, 35);
@@ -426,7 +426,7 @@
             this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1542, 902);
+            this.tabPage2.Size = new System.Drawing.Size(200, 60);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -533,16 +533,16 @@
             // 
             // RunningTestingWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1562, 1000);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.uiTitlePanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "RunningTestingWindow";
             this.Text = "肺活量测试";
             this.Load += new System.EventHandler(this.RunningTestingWindow_Load);
+            this.Resize += new System.EventHandler(this.RunningTestingWindow_Resize);
             this.uiTitlePanel1.ResumeLayout(false);
             this.uiTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

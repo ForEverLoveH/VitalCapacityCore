@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PLADCore.GameSystem.Helper;
 using static PLADCore.GameSystem.MyControl.UserControl1;
 
 namespace PLADCore.GameSystem.MyControl
@@ -167,6 +168,16 @@ namespace PLADCore.GameSystem.MyControl
             public Bitmap img;
             public string log;
         }
- 
+
+        private AutoSizeControll AutoSizeControll = new AutoSizeControll();
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+          //  AutoSizeControll.ControlInitializeSize(this);
+        }
+
+        private void UserControl1_SizeChanged(object sender, EventArgs e)
+        {
+             //AutoSizeControll.ControlAutoSize(this);
+        }
     }
 }

@@ -17,21 +17,23 @@ namespace PLADCore.GameSystem.GameWindow
         {
             InitializeComponent();
         }
+
         public int machineCount = 0;
         public string portName = string.Empty;
 
-        
-
         private void uiButton1_Click(object sender, EventArgs e)
         {
-             RunningMachineSettingWindowSys.Instance.SaveData(uiComboBox2,uiComboBox1 ,ref machineCount,ref portName);
-             DialogResult= DialogResult.OK;
-             this.Close();
+            RunningMachineSettingWindowSys.Instance.SaveData(uiComboBox2, uiComboBox1, ref machineCount, ref portName);
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void uiComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
 
+        private void RunningMachineSettingWindow_Load(object sender, EventArgs e)
+        {
         }
     }
 }

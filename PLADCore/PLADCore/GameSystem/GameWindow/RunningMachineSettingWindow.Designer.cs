@@ -149,6 +149,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RunningMachineSettingWindow";
             this.Text = "设置选择";
+            this.Load += new System.EventHandler(this.RunningMachineSettingWindow_Load);
             this.uiTitlePanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

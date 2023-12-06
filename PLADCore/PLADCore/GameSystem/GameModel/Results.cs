@@ -13,7 +13,6 @@ namespace PLADCore.GameSystem.GameModel
         /// </summary>
         public List<GroupsItem> groups { get; set; }
 
-
     }
 
 
